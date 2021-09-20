@@ -7,6 +7,7 @@ const locale = "en-us";
 const units = "miles";
 
 
+
 const http = axios.create({
     baseURL: "https://app.ticketmaster.com/discovery/v2/",
     params: {
@@ -14,23 +15,19 @@ const http = axios.create({
     },
   });
 
-export default function getResults (keyword?:any, latlong?:any, startDateTime?:any, endDateTime?:any):Promise<any> {
+//   keyword?:any, latlong?:any, startDateTime?:any, endDateTime?:any
+export default function getResults (keyword?:any,latlong?:any):Promise<any> {
     return http.get("/events.json", {
         params: {
             apikey: key,
             keyword: keyword,
-            latlong: latlong,
-            radius: 100,
-            units: "miles",
-            locale: "en-us",
-            startDateTime: startDateTime,
-            endDateTime: endDateTime
+            latlong: latlong
         }
     })
     .then((response) => response.data._embedded.events)
 }
 
-// export function getKeywordResults (keyword?: any):Promise<>{
+// export function getKeywordResults (keyword?: any):Promise<any>{
 //     return http.get("/events.json", {
 //         params: {
 //             apikey: key,
@@ -41,7 +38,7 @@ export default function getResults (keyword?:any, latlong?:any, startDateTime?:a
 //     .then((response) => response.data._embedded.events)
 // }
 
-// export function getLocationResults (latlong?: any){
+// export function getLocationResults (latlong?: any):Promise<any>{
 //     return http.get("/events.json", {
 //         params: {
 //             apikey: key,
@@ -54,7 +51,7 @@ export default function getResults (keyword?:any, latlong?:any, startDateTime?:a
 //     .then((response) => response.data._embedded.events)
 // }
 
-// export function getStartDateResults (startDateTime?: any){
+// export function getStartDateResults (startDateTime?: any):Promise<any>{
 //     return http.get("/events.json", {
 //         params: {
 //             apikey: key,
@@ -65,7 +62,7 @@ export default function getResults (keyword?:any, latlong?:any, startDateTime?:a
 //     .then((response) => response.data._embedded.events)
 // }
 
-// export function getEndDateResults (endDateTime?: any){
+// export function getEndDateResults (endDateTime?: any):Promise<any>{
 //     return http.get("/events.json", {
 //         params: {
 //             apikey: key,

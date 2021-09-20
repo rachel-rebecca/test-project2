@@ -1,5 +1,6 @@
 import { useHistory } from "react-router";
 import { useState } from "react";
+import { LongLat } from "../models/LongLat";
 
 export default function Search () {
     const[keyword, setKeyword] = useState("")
@@ -15,11 +16,26 @@ export default function Search () {
             
         })
     }
+
+   
     return (
         <div>
             <form>
             <input onChange={(e) => {setKeyword(e.target.value)}} />
-            <input onChange={(e) => {setLatlong(e.target.value)}}/>
+            {/* latlong input */}
+            <input onChange={(e) => {
+                if(e.target.value.length == 5) {
+                    LongLat.forEach(array => {
+                        if(array[0] == e.target.value) {
+                            setLatlong(""+array[1]+","+array[2]+"")
+                            console.log(latlong)
+                        }
+                    })
+                }
+                
+                
+                }}/>
+
             <input onChange={(e) => {setStartDateTime(e.target.value)}}/>
             <input onChange={(e) => {setEndDateTime(e.target.value)}}/>
             <button onClick={handleClick}>Search</button>
@@ -30,6 +46,8 @@ export default function Search () {
         
     )
 }
+
+
 
 //"https://app.ticketmaster.com/discovery/v2/suggest.json"
 

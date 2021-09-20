@@ -20,13 +20,15 @@ export default function Results () {
 
    
 
-   function searchData() {
-       getResults().then((data) => {setEvents(data)})
+    function searchData() {
+       getResults(keyword, latlong).then((data) => {setEvents(data)})
+       
    }
 
-//    function searchKeyword() {
-//         getKeywordResults(keyword).then((data) => {setEvents(data)})
-//     }
+//    async function searchKeyword() {
+//     getResults(keyword).then((data) => {setEvents(data)})
+// }
+// searchKeyword();
 
 //     function searchLocation(){
 //         getLocationResults(latlong).then((data) => {setEvents(data)})
@@ -47,9 +49,7 @@ export default function Results () {
     
     useEffect(() => {
         searchData()
-        if(keyword){
-            getResults(keyword).then((data) => {setEvents(data)})
-        } 
+       
        
         // searchLocation();
         // searchStartDate()
@@ -99,3 +99,9 @@ export default function Results () {
 // const search_keyword = setKeyword(search_zip);
 // const start_date = convertStartDate(search_keyword);
 // const end_date = convertEndDate(start_date);
+
+
+//https://app.ticketmaster.com/discovery/v2/events?apikey=hGWHw80UqtonvVa5RfP9mPRnG5sdbhnh&keyword=music&latlong=42.5835951,-82.8293423&radius=100&unit=miles&locale=en-us&startDateTime=2021-09-25T21:47:00Z&endDateTime=2021-09-30T12:08:00Z
+// 42.5835951,-82.8293423
+// 2021-09-25T21:47:00Z
+// 2021-09-30T12:08:00Z
